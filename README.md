@@ -84,6 +84,20 @@ Utiliser `backstage/templates/ml-project-template.yaml`:
 - CI de validation (`.github/workflows/validate.yaml`)
 - Checklist d’exploitation prod (`docs/production-readiness-checklist.md`)
 
+## Documentation plateforme
+
+- Vue d’ensemble professionnelle: `docs/platform-documentation.md`
+- Guide de déploiement: `docs/deployment-guide.md`
+- Roadmap d’implémentation: `docs/implementation-roadmap.md`
+- Hardening V3: `docs/v3-enterprise-hardening.md`
+- Plan de PR V3 -> main: `docs/pr-v3-to-main.md`
+
+## Bootstrap one-shot cluster vierge
+
+```bash
+./scripts/bootstrap-one-shot.sh
+```
+
 ## Prochaine étape
 
 Voir `docs/implementation-roadmap.md` pour industrialiser (multi-cluster, multi-tenant, SSO, policy-as-code avancé).
