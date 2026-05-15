@@ -2,8 +2,8 @@
 
 1. Installer Kubecost (Helm chart officiel)
 2. Mapper les labels namespace:
-   - `mlz/cost-center`
-   - `mlz/owner`
+   - `zonaas/cost-center`
+   - `zonaas/owner`
 3. Créer des vues coût par namespace projet
 
 Exemple query (Kubecost API):

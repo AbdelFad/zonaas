@@ -14,10 +14,10 @@ spec:
     metadata:
       name: '{{project.name}}-{{project.env}}'
       labels:
-        mlz/project: '{{project.name}}'
-        mlz/env: '{{project.env}}'
+        zonaas/project: '{{project.name}}'
+        zonaas/env: '{{project.env}}'
     spec:
-      project: ml-lz
+      project: zonaas
       source:
         repoURL: '{{project.repoURL}}'
         targetRevision: '{{project.revision}}'

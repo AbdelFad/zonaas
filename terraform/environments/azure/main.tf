@@ -3,9 +3,9 @@ module "ml_alpha_prod" {
 
   name = "ml-alpha-prod"
   labels = {
-    "mlz/environment" = var.environment
-    "mlz/platform"    = "azure"
-    "mlz/cost-center" = "ml-alpha"
-    "mlz/owner"       = "data-science"
+    "zonaas/environment" = var.environment
+    "zonaas/platform"    = "azure"
+    "zonaas/cost-center" = "ml-alpha"
+    "zonaas/owner"       = "data-science"
   }
 }

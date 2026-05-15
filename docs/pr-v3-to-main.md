@@ -24,7 +24,7 @@ git push origin v3-prod-hardening
 gh pr create \
   --base main \
   --head v3-prod-hardening \
-  --title "feat: V3 enterprise hardening for ML-LZaaS" \
+  --title "feat: V3 enterprise hardening for ZONAAS" \
   --body-file docs/pr-v3-to-main.md
 ```
 

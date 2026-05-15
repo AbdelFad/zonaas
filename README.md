@@ -1,6 +1,11 @@
-# ML Landing Zone as a Service (ML-LZaaS)
+# ZONAAS — ML Landing Zone as a Service (alias MLLZONAAS)
 
 Plateforme **Enterprise-Ready** pour provisionner des environnements ML isolés, sécurisés, observables et pilotés en GitOps.
+
+Nomenclature officielle:
+- Nom original: **ML Landing Zone as a Service**
+- Alias: **MLLZONAAS**
+- Nom court (branding): **ZONAAS**
 
 Objectif: fournir une base **prête à l'emploi** applicable **on-prem** et sur **cloud public** (AWS/Azure/GCP/OVH/…)
 avec un noyau Kubernetes + Terraform + ArgoCD + Backstage.
@@ -39,8 +44,8 @@ avec un noyau Kubernetes + Terraform + ArgoCD + Backstage.
 ```bash
 cd terraform/environments/dev
 terraform init
-terraform plan -var='cluster_name=mlz-dev' -var='environment=dev'
-terraform apply -var='cluster_name=mlz-dev' -var='environment=dev'
+terraform plan -var='cluster_name=zonaas-dev' -var='environment=dev'
+terraform apply -var='cluster_name=zonaas-dev' -var='environment=dev'
 ```
 
 ### 3) Déployer GitOps bootstrap

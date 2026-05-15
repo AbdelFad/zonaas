@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: ml-lz
+  name: zonaas
   namespace: argocd
 spec:
   description: ML Landing Zone Project (locked-down)
@@ -18,7 +18,7 @@ spec:
     - group: '*'
       kind: '*'
   roles:
-    - name: mlz-admin
+    - name: zonaas-admin
       description: admin role for platform team
       policies:
-        - p, proj:ml-lz:mlz-admin, applications, *, ml-lz/*, allow
+        - p, proj:zonaas:zonaas-admin, applications, *, zonaas/*, allow

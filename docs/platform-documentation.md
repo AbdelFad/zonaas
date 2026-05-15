@@ -1,8 +1,8 @@
-# ML Landing Zone as a Service — Documentation Plateforme
+# ZONAAS — Documentation Plateforme
 
 ## 1) Résumé exécutif
 
-**ML-LZaaS** est une plateforme cloud-agnostic qui standardise le provisioning d’environnements ML via un modèle **self-service contrôlé**.
+**ZONAAS** est la marque courte de la plateforme **ML Landing Zone as a Service** (alias: **MLLZONAAS**). Elle standardise le provisioning d’environnements ML via un modèle **self-service contrôlé**.
 
 Objectifs:
 - Accélérer l’onboarding projets ML

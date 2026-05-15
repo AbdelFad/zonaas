@@ -9,7 +9,7 @@ terraform {
 
 locals {
   merged_labels = merge(var.labels, {
-    "mlz/gpu-profile"                         = var.gpu_profile,
+    "zonaas/gpu-profile"                         = var.gpu_profile,
     "pod-security.kubernetes.io/enforce"      = "restricted",
     "pod-security.kubernetes.io/audit"        = "restricted",
     "pod-security.kubernetes.io/warn"         = "restricted"
