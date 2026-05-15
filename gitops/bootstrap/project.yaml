@@ -4,15 +4,21 @@ metadata:
   name: ml-lz
   namespace: argocd
 spec:
-  description: ML Landing Zone Project
+  description: ML Landing Zone Project (locked-down)
   sourceRepos:
-    - '*'
+    - 'https://github.com/example/ml-projects-catalog.git'
+    - 'https://github.com/example/*-prod.git'
   destinations:
-    - namespace: '*'
-      server: '*'
+    - namespace: ml-*
+      server: https://kubernetes.default.svc
   clusterResourceWhitelist:
-    - group: '*'
-      kind: '*'
+    - group: ''
+      kind: Namespace
   namespaceResourceWhitelist:
     - group: '*'
       kind: '*'
+  roles:
+    - name: mlz-admin
+      description: admin role for platform team
+      policies:
+        - p, proj:ml-lz:mlz-admin, applications, *, ml-lz/*, allow

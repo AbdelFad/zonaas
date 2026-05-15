@@ -19,3 +19,15 @@ variable "gpu_profile" {
   default     = "none"
   description = "none|small|medium|large (MIG profile policy label)"
 }
+
+variable "vault_cidr" {
+  type        = string
+  default     = "10.10.0.0/24"
+  description = "CIDR where Vault endpoint is exposed"
+}
+
+variable "object_storage_cidr" {
+  type        = string
+  default     = "10.20.0.0/16"
+  description = "CIDR where object storage endpoint is exposed"
+}
