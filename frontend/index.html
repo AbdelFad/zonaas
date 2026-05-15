@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZONAAS — ML Landing Zone as a Service</title>
+  <meta name="description" content="ZONAAS: plateforme enterprise-ready pour industrialiser les environnements ML (on-prem et cloud)." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #121a30;
+      --card: #131d36;
+      --text: #eef2ff;
+      --muted: #a8b3cf;
+      --primary: #5eead4;
+      --primary-2: #60a5fa;
+      --border: #26304f;
+      --ok: #34d399;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color: var(--text);
+      background: radial-gradient(1000px 400px at 20% -10%, #1b2f63 0%, transparent 60%), var(--bg);
+      line-height: 1.5;
+    }
+    .container { width: min(1120px, 92%); margin: 0 auto; }
+    header { padding: 22px 0; position: sticky; top: 0; background: rgba(11,16,32,.75); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,.06); }
+    .nav { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-weight: 800; letter-spacing: .5px; }
+    .logo span { color: var(--primary); }
+    .cta { background: linear-gradient(90deg, var(--primary), var(--primary-2)); color: #031321; border: 0; padding: 10px 16px; border-radius: 10px; font-weight: 700; text-decoration: none; }
+    .hero { padding: 72px 0 48px; display: grid; gap: 24px; }
+    .badge { display: inline-block; border: 1px solid var(--border); color: var(--muted); background: rgba(255,255,255,.02); border-radius: 999px; padding: 6px 12px; font-size: 12px; }
+    h1 { font-size: clamp(32px, 6vw, 56px); margin: 12px 0; line-height: 1.1; }
+    .lead { color: var(--muted); font-size: clamp(16px, 2.5vw, 20px); max-width: 840px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
+    .btn-alt { border: 1px solid var(--border); color: var(--text); text-decoration: none; padding: 10px 16px; border-radius: 10px; }
+    .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); margin: 28px 0 0; }
+    .card { background: linear-gradient(180deg, rgba(255,255,255,.03), transparent), var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px; }
+    .card h3 { margin: 0 0 8px; font-size: 16px; }
+    .card p { margin: 0; color: var(--muted); font-size: 14px; }
+    section { padding: 46px 0; }
+    .section-title { font-size: 28px; margin-bottom: 14px; }
+    .split { display: grid; grid-template-columns: 1.2fr .8fr; gap: 20px; }
+    .list { margin: 0; padding-left: 18px; color: var(--muted); }
+    .kpis { display: grid; gap: 12px; }
+    .kpi { background: var(--bg-soft); border: 1px solid var(--border); border-radius: 12px; padding: 12px; }
+    .kpi strong { color: var(--ok); font-size: 20px; }
+    footer { border-top: 1px solid rgba(255,255,255,.08); margin-top: 30px; padding: 20px 0 30px; color: var(--muted); font-size: 14px; }
+    @media (max-width: 900px) { .split { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo">ZON<span>AAS</span></div>
+      <a class="cta" href="#contact">Demander une démo</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <span class="badge">ML Landing Zone as a Service · alias MLLZONAAS</span>
+      <h1>Industrialisez vos projets ML avec une plateforme moderne, sécurisée et cloud-agnostic.</h1>
+      <p class="lead">ZONAAS aide les PME et les grandes entreprises à livrer plus vite des environnements ML gouvernés : self-service Backstage, GitOps ArgoCD, sécurité Vault/Kyverno, observabilité et FinOps intégrés.</p>
+      <div class="hero-actions">
+        <a class="cta" href="#architecture">Voir l’architecture</a>
+        <a class="btn-alt" href="#offres">Comparer les offres</a>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <h3>Déploiement accéléré</h3>
+          <p>Provisioning standardisé des namespaces et projets en quelques minutes.</p>
+        </article>
+        <article class="card">
+          <h3>Sécurité by design</h3>
+          <p>Policies, secrets, RBAC et garde-fous appliqués automatiquement.</p>
+        </article>
+        <article class="card">
+          <h3>Multi-cloud / On-prem</h3>
+          <p>Un socle unique Kubernetes/Terraform, des overlays par provider.</p>
+        </article>
+        <article class="card">
+          <h3>FinOps natif</h3>
+          <p>Suivi des coûts par équipe/projet dès la création des environnements.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="architecture">
+      <h2 class="section-title">Architecture de référence</h2>
+      <div class="split">
+        <div class="card">
+          <h3>Control Plane + Execution Plane</h3>
+          <ul class="list">
+            <li>Self-service projet avec Backstage</li>
+            <li>Convergence déclarative via ArgoCD (GitOps)</li>
+            <li>Provisioning namespace/quotas/policies avec Terraform</li>
+            <li>Sécurité transverse Vault + Kyverno + NetworkPolicies</li>
+            <li>Observabilité & coûts via Prometheus/Grafana/KubeCost</li>
+          </ul>
+        </div>
+        <div class="kpis">
+          <div class="kpi"><div>Time-to-environment</div><strong>↓ jusqu’à 80%</strong></div>
+          <div class="kpi"><div>Conformité platform</div><strong>99%+ standardisée</strong></div>
+          <div class="kpi"><div>Visibilité coût</div><strong>Par projet / équipe</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="offres">
+      <h2 class="section-title">Offre adaptée PME & Enterprise</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Starter (PME)</h3>
+          <p>1 cluster, onboarding rapide, baseline sécurité/observabilité prête à l’emploi.</p>
+        </article>
+        <article class="card">
+          <h3>Scale (ETI)</h3>
+          <p>Multi-environnements, gouvernance renforcée, CI/CD plateforme étendue.</p>
+        </article>
+        <article class="card">
+          <h3>Enterprise</h3>
+          <p>Multi-cluster, exigences conformité avancées, intégrations IAM/SOC/FinOps complètes.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="card">
+      <h2 class="section-title">Prêt à lancer ZONAAS ?</h2>
+      <p class="lead">Nous pouvons transformer votre pratique ML en plateforme produit : gouvernance, industrialisation, coûts maîtrisés et adoption équipe.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© ZONAAS — ML Landing Zone as a Service (alias MLLZONAAS)</div>
+  </footer>
+</body>
+</html>

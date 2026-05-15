@@ -95,6 +95,9 @@ Utiliser `backstage/templates/ml-project-template.yaml`:
 - Guide de déploiement: `docs/deployment-guide.md`
 - Roadmap d’implémentation: `docs/implementation-roadmap.md`
 - Hardening V3: `docs/v3-enterprise-hardening.md`
+- Architecture (schéma clair): `docs/architecture.md`
+- Frontend plateforme (landing): `frontend/index.html`
+- Positionnement frontend: `docs/frontend-product.md`
 - Plan de PR V3 -> main: `docs/pr-v3-to-main.md`
 
 ## Bootstrap one-shot cluster vierge
