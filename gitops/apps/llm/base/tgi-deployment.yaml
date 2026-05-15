@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tgi-server
+  labels:
+    app: tgi-server
+    zonaas/workload-type: llm
+    zonaas/data-classification: confidential
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tgi-server
+  template:
+    metadata:
+      labels:
+        app: tgi-server
+        zonaas/workload-type: llm
+        zonaas/data-classification: confidential
+    spec:
+      containers:
+        - name: tgi
+          image: ghcr.io/huggingface/text-generation-inference:2.2.0
+          args:
+            - --model-id
+            - /models/mistral-7b-instruct
+            - --hostname
+            - 0.0.0.0
+            - --port
+            - "8080"
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: "8"
+              memory: "24Gi"
+            limits:
+              cpu: "16"
+              memory: "48Gi"
+          securityContext:
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true

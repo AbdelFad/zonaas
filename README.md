@@ -99,6 +99,10 @@ Utiliser `backstage/templates/ml-project-template.yaml`:
 - Frontend plateforme (landing): `frontend/index.html`
 - Positionnement frontend: `docs/frontend-product.md`
 - Plan de PR V3 -> main: `docs/pr-v3-to-main.md`
+- Roadmap V4 Sovereign LLM: `docs/v4-sovereign-llm-roadmap.md`
+- Architecture Sovereign LLM: `docs/sovereign-llm-architecture.md`
+- Data sovereignty controls: `docs/data-sovereignty-controls.md`
+- Runbook exfiltration: `docs/runbook-incident-exfiltration.md`
 
 ## Bootstrap one-shot cluster vierge
 

@@ -1,0 +1,25 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: require-llm-egress-policy-label
+spec:
+  validationFailureAction: Enforce
+  background: true
+  rules:
+    - name: require-egress-control-mode
+      match:
+        any:
+          - resources:
+              kinds:
+                - Namespace
+      preconditions:
+        all:
+          - key: "{{ request.object.metadata.labels.\"zonaas/tenant-type\" || '' }}"
+            operator: Equals
+            value: "llm"
+      validate:
+        message: "Les namespaces LLM doivent déclarer zonaas/egress-mode=deny-all ou strict-allowlist."
+        pattern:
+          metadata:
+            labels:
+              zonaas/egress-mode: "deny-all|strict-allowlist"

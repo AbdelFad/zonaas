@@ -8,6 +8,7 @@ Donner à la plateforme ZONAAS une vitrine moderne et crédible pour attirer:
 ## Livrable actuel
 - Landing page moderne: `frontend/index.html`
 - Style: premium B2B SaaS, sombre, lisible, orienté valeur
+- Section dédiée V4 Sovereign LLM (self-hosted + conformité + no-exfiltration)
 
 ## Positionnement messaging
 - Nom court: **ZONAAS**

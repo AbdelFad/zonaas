@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: llm-platform
+resources:
+  - namespace.yaml
+  - networkpolicy-default-deny.yaml
+  - networkpolicy-allow-internal-dns.yaml
+  - networkpolicy-allow-object-store-internal.yaml
+  - vllm-deployment.yaml
+  - vllm-service.yaml
+  - tgi-deployment.yaml
+  - tgi-service.yaml
+  - llm-audit-configmap.yaml
+  - servicemonitor-llm-inference.yaml

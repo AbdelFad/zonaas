@@ -26,6 +26,7 @@ Piliers techniques:
 - Baselines sécurité (quotas, policies, restrictions réseau)
 - Observabilité initiale (métriques + dashboards)
 - Documentation d’exploitation et de hardening V3
+- Cible V4 Sovereign LLM (self-hosted + data sovereignty)
 
 ### Non inclus (à intégrer selon contexte client)
 - IAM/SSO d’entreprise (Azure AD/Okta/Keycloak)
@@ -149,3 +150,7 @@ Rituels recommandés:
 - `docs/architecture.md`
 - `docs/production-readiness-checklist.md`
 - `docs/v3-enterprise-hardening.md`
+- `docs/v4-sovereign-llm-roadmap.md`
+- `docs/sovereign-llm-architecture.md`
+- `docs/data-sovereignty-controls.md`
+- `docs/runbook-incident-exfiltration.md`

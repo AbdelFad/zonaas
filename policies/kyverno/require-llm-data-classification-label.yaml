@@ -1,0 +1,27 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: require-llm-data-classification-label
+spec:
+  validationFailureAction: Enforce
+  background: true
+  rules:
+    - name: require-classification-for-llm-workloads
+      match:
+        any:
+          - resources:
+              kinds:
+                - Deployment
+                - StatefulSet
+                - Job
+      preconditions:
+        all:
+          - key: "{{ request.object.metadata.labels.\"zonaas/workload-type\" || '' }}"
+            operator: Equals
+            value: "llm"
+      validate:
+        message: "Les workloads LLM doivent définir le label zonaas/data-classification (restricted|confidential|internal)."
+        pattern:
+          metadata:
+            labels:
+              zonaas/data-classification: "?*"

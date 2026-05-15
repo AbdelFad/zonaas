@@ -29,3 +29,8 @@ jobs:
 
       - name: Kustomize build policies
         run: kubectl kustomize policies/kyverno >/dev/null
+
+      - name: Kustomize build sovereign llm apps
+        run: |
+          kubectl kustomize gitops/apps/llm/base >/dev/null
+          kubectl kustomize gitops/apps/overlays/onprem >/dev/null
