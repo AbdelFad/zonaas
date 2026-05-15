@@ -1,0 +1,8 @@
+project:
+  name: ml-alpha
+  env: prod
+  namespace: ml-alpha-prod
+  repoURL: https://github.com/example/ml-alpha-prod.git
+  revision: main
+  path: .argo/overlays/prod
+  destinationServer: https://kubernetes.default.svc

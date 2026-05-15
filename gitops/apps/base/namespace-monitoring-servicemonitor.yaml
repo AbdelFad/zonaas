@@ -1,0 +1,12 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: ml-namespace-metrics
+  namespace: ml-alpha-prod
+spec:
+  selector:
+    matchLabels:
+      app: model-api
+  endpoints:
+    - port: http-metrics
+      interval: 30s

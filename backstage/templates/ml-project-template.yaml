@@ -1,0 +1,52 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: ml-project-template
+  title: ML Project Bootstrap
+  description: Crée un projet ML standardisé dans la Landing Zone
+spec:
+  owner: platform-team
+  type: service
+  parameters:
+    - title: Project Information
+      required: [name, owner, repoUrl, namespace]
+      properties:
+        name:
+          type: string
+          title: Project name
+        owner:
+          type: string
+          title: Owner team
+        namespace:
+          type: string
+          title: Kubernetes namespace
+          default: ml-alpha-prod
+        repoUrl:
+          type: string
+          title: Repository URL
+  steps:
+    - id: fetch-base
+      name: Fetch base template
+      action: fetch:template
+      input:
+        url: ./skeleton
+        values:
+          name: ${{ parameters.name }}
+          owner: ${{ parameters.owner }}
+          namespace: ${{ parameters.namespace }}
+    - id: publish
+      name: Publish repository
+      action: publish:github
+      input:
+        repoUrl: ${{ parameters.repoUrl }}
+        defaultBranch: main
+    - id: register
+      name: Register catalog entity
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
+        catalogInfoPath: /catalog-info.yaml
+  output:
+    links:
+      - title: Repository
+        url: ${{ steps.publish.output.remoteUrl }}

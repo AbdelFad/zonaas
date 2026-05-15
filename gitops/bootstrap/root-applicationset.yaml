@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: ml-projects
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/example/ml-projects-catalog.git
+        revision: main
+        files:
+          - path: projects/*/project-config.yaml
+  template:
+    metadata:
+      name: '{{project.name}}-{{project.env}}'
+      labels:
+        mlz/project: '{{project.name}}'
+        mlz/env: '{{project.env}}'
+    spec:
+      project: ml-lz
+      source:
+        repoURL: '{{project.repoURL}}'
+        targetRevision: '{{project.revision}}'
+        path: '{{project.path}}'
+      destination:
+        server: '{{project.destinationServer}}'
+        namespace: '{{project.namespace}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=false

@@ -1,0 +1,6 @@
+{
+  "bound_service_account_names": ["ml-workload"],
+  "bound_service_account_namespaces": ["ml-alpha-prod"],
+  "policies": ["ml-alpha-prod"],
+  "ttl": "1h"
+}

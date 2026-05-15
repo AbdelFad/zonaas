@@ -1,0 +1,14 @@
+{
+  "title": "ML Project Overview",
+  "schemaVersion": 39,
+  "panels": [
+    {"type": "timeseries", "title": "CPU Usage", "targets": [{"expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"$namespace\"}[5m]))"}]},
+    {"type": "timeseries", "title": "GPU Utilization", "targets": [{"expr": "avg(nvidia_gpu_duty_cycle{namespace=\"$namespace\"})"}]},
+    {"type": "timeseries", "title": "Model Latency p95", "targets": [{"expr": "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket{namespace=\"$namespace\"}[5m])) by (le))"}]}
+  ],
+  "templating": {
+    "list": [
+      {"name": "namespace", "type": "query", "query": "label_values(kube_namespace_labels, namespace)"}
+    ]
+  }
+}
