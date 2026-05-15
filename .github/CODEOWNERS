@@ -1,0 +1,11 @@
+# Global owners
+* @AbdelFad
+
+# Platform critical paths
+/.github/workflows/* @AbdelFad
+/terraform/** @AbdelFad
+/gitops/** @AbdelFad
+/policies/** @AbdelFad
+/vault/** @AbdelFad
+/docs/** @AbdelFad
+/frontend/** @AbdelFad
