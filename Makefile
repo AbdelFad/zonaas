@@ -20,7 +20,7 @@ tf-init:
 	terraform -chdir=terraform/environments/dev init
 
 tf-plan:
-	terraform -chdir=terraform/environments/dev plan -var='cluster_name=mlz-dev' -var='environment=dev'
+	terraform -chdir=terraform/environments/dev plan -var='cluster_name=zonaas-dev' -var='environment=dev'
 
 tf-apply:
-	terraform -chdir=terraform/environments/dev apply -var='cluster_name=mlz-dev' -var='environment=dev'
+	terraform -chdir=terraform/environments/dev apply -var='cluster_name=zonaas-dev' -var='environment=dev'

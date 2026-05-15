@@ -1,6 +1,11 @@
-# ML Landing Zone as a Service (ML-LZaaS)
+# ZONAAS — ML Landing Zone as a Service (alias MLLZONAAS)
 
 Plateforme **Enterprise-Ready** pour provisionner des environnements ML isolés, sécurisés, observables et pilotés en GitOps.
+
+Nomenclature officielle:
+- Nom original: **ML Landing Zone as a Service**
+- Alias: **MLLZONAAS**
+- Nom court (branding): **ZONAAS**
 
 Objectif: fournir une base **prête à l'emploi** applicable **on-prem** et sur **cloud public** (AWS/Azure/GCP/OVH/…)
 avec un noyau Kubernetes + Terraform + ArgoCD + Backstage.
@@ -39,8 +44,8 @@ avec un noyau Kubernetes + Terraform + ArgoCD + Backstage.
 ```bash
 cd terraform/environments/dev
 terraform init
-terraform plan -var='cluster_name=mlz-dev' -var='environment=dev'
-terraform apply -var='cluster_name=mlz-dev' -var='environment=dev'
+terraform plan -var='cluster_name=zonaas-dev' -var='environment=dev'
+terraform apply -var='cluster_name=zonaas-dev' -var='environment=dev'
 ```
 
 ### 3) Déployer GitOps bootstrap
@@ -83,6 +88,20 @@ Utiliser `backstage/templates/ml-project-template.yaml`:
 - Profils GPU/MIG documentés et labelés (`docs/gpu-mig-profiles.md`)
 - CI de validation (`.github/workflows/validate.yaml`)
 - Checklist d’exploitation prod (`docs/production-readiness-checklist.md`)
+
+## Documentation plateforme
+
+- Vue d’ensemble professionnelle: `docs/platform-documentation.md`
+- Guide de déploiement: `docs/deployment-guide.md`
+- Roadmap d’implémentation: `docs/implementation-roadmap.md`
+- Hardening V3: `docs/v3-enterprise-hardening.md`
+- Plan de PR V3 -> main: `docs/pr-v3-to-main.md`
+
+## Bootstrap one-shot cluster vierge
+
+```bash
+./scripts/bootstrap-one-shot.sh
+```
 
 ## Prochaine étape
 

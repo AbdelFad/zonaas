@@ -9,7 +9,7 @@ spec:
   type: service
   parameters:
     - title: Project Information
-      required: [name, owner, repoUrl, namespace]
+      required: [name, owner, repoUrl, namespace, costCenter, gpuProfile, slaTier, complianceLevel]
       properties:
         name:
           type: string
@@ -24,6 +24,24 @@ spec:
         repoUrl:
           type: string
           title: Repository URL
+        costCenter:
+          type: string
+          title: Cost center
+        gpuProfile:
+          type: string
+          title: GPU profile
+          enum: [none, small, medium, large]
+          default: medium
+        slaTier:
+          type: string
+          title: SLA tier
+          enum: [bronze, silver, gold]
+          default: silver
+        complianceLevel:
+          type: string
+          title: Compliance level
+          enum: [standard, soc2, hipaa]
+          default: standard
   steps:
     - id: fetch-base
       name: Fetch base template
@@ -34,6 +52,10 @@ spec:
           name: ${{ parameters.name }}
           owner: ${{ parameters.owner }}
           namespace: ${{ parameters.namespace }}
+          costCenter: ${{ parameters.costCenter }}
+          gpuProfile: ${{ parameters.gpuProfile }}
+          slaTier: ${{ parameters.slaTier }}
+          complianceLevel: ${{ parameters.complianceLevel }}
     - id: publish
       name: Publish repository
       action: publish:github

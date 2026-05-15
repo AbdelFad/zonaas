@@ -1,18 +1,24 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: ml-lz
+  name: zonaas
   namespace: argocd
 spec:
-  description: ML Landing Zone Project
+  description: ML Landing Zone Project (locked-down)
   sourceRepos:
-    - '*'
+    - 'https://github.com/example/ml-projects-catalog.git'
+    - 'https://github.com/example/*-prod.git'
   destinations:
-    - namespace: '*'
-      server: '*'
+    - namespace: ml-*
+      server: https://kubernetes.default.svc
   clusterResourceWhitelist:
-    - group: '*'
-      kind: '*'
+    - group: ''
+      kind: Namespace
   namespaceResourceWhitelist:
     - group: '*'
       kind: '*'
+  roles:
+    - name: zonaas-admin
+      description: admin role for platform team
+      policies:
+        - p, proj:zonaas:zonaas-admin, applications, *, zonaas/*, allow
