@@ -21,3 +21,11 @@
 - [ ] Conventions namespace `ml-<team>-<env>`
 - [ ] Quotas revus trimestriellement
 - [ ] Profils GPU/MIG documentés et appliqués
+
+## Souveraineté LLM (V4)
+- [ ] Namespace LLM labelé `zonaas/tenant-type=llm`
+- [ ] Egress mode explicite (`deny-all` ou `strict-allowlist`)
+- [ ] Services LLM en `ClusterIP` uniquement (pas de LB public)
+- [ ] Label `zonaas/data-classification` sur workloads LLM
+- [ ] Audit trail activé pour toutes les inférences
+- [ ] Runbook exfiltration testé (table-top exercise)

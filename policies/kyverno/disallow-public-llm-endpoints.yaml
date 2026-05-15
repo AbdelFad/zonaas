@@ -1,0 +1,29 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: disallow-public-llm-endpoints
+spec:
+  validationFailureAction: Enforce
+  background: true
+  rules:
+    - name: deny-public-loadbalancer-for-llm
+      match:
+        any:
+          - resources:
+              kinds:
+                - Service
+      preconditions:
+        all:
+          - key: "{{ request.object.metadata.labels.\"zonaas/workload-type\" || '' }}"
+            operator: Equals
+            value: "llm"
+      validate:
+        message: "Les services LLM ne doivent pas être exposés en LoadBalancer/NodePort. Utiliser ClusterIP + gateway interne."
+        deny:
+          conditions:
+            any:
+              - key: "{{ request.object.spec.type || 'ClusterIP' }}"
+                operator: AnyIn
+                value:
+                  - LoadBalancer
+                  - NodePort

@@ -101,3 +101,4 @@ flowchart TB
 - SSO/RBAC centralisé (OIDC)
 - Policy bundles conformité par niveau (standard/strict)
 - Environnements éphémères preview pour projets ML
+- Module Sovereign LLM: templates vLLM/TGI + no-egress + audit trail

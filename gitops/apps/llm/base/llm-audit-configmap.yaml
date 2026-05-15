@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: llm-audit-controls
+  labels:
+    zonaas/workload-type: llm
+data:
+  audit-mode: "enabled"
+  redact-pii: "true"
+  prompt-retention-days: "7"
+  response-retention-days: "7"
+  blocked-domains: "api.openai.com,api.anthropic.com,generativelanguage.googleapis.com"

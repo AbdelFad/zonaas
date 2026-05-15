@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vllm-server
+  labels:
+    app: vllm-server
+    zonaas/workload-type: llm
+    zonaas/data-classification: confidential
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vllm-server
+  template:
+    metadata:
+      labels:
+        app: vllm-server
+        zonaas/workload-type: llm
+        zonaas/data-classification: confidential
+    spec:
+      containers:
+        - name: vllm
+          image: vllm/vllm-openai:latest
+          args:
+            - --model
+            - /models/meta-llama-3-8b-instruct
+            - --host
+            - 0.0.0.0
+            - --port
+            - "8000"
+          ports:
+            - containerPort: 8000
+          resources:
+            requests:
+              cpu: "8"
+              memory: "32Gi"
+            limits:
+              cpu: "16"
+              memory: "64Gi"
+          securityContext:
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true

@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: llm-inference
+  labels:
+    release: prometheus
+spec:
+  namespaceSelector:
+    matchNames:
+      - llm-platform
+  selector:
+    matchExpressions:
+      - key: zonaas/workload-type
+        operator: In
+        values: ["llm"]
+  endpoints:
+    - port: http
+      interval: 30s
+      path: /metrics
