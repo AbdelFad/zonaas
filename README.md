@@ -103,6 +103,7 @@ Utiliser `backstage/templates/ml-project-template.yaml`:
 - Architecture Sovereign LLM: `docs/sovereign-llm-architecture.md`
 - Data sovereignty controls: `docs/data-sovereignty-controls.md`
 - Runbook exfiltration: `docs/runbook-incident-exfiltration.md`
+- Stratégie licences Trial/Free/Enterprise: `docs/licensing-strategy.md`
 
 ## Bootstrap one-shot cluster vierge
 

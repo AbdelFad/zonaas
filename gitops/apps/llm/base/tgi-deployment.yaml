@@ -18,6 +18,10 @@ spec:
         zonaas/workload-type: llm
         zonaas/data-classification: confidential
     spec:
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
       containers:
         - name: tgi
           image: ghcr.io/huggingface/text-generation-inference:2.2.0
