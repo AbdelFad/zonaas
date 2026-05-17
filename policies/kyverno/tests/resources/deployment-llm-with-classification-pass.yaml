@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llm-with-classification
+  labels:
+    zonaas/workload-type: llm
+    zonaas/data-classification: confidential
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: llm-app-pass
+  template:
+    metadata:
+      labels:
+        app: llm-app-pass
+        zonaas/workload-type: llm
+        zonaas/data-classification: confidential
+    spec:
+      securityContext:
+        runAsNonRoot: true
+      containers:
+        - name: app
+          image: ghcr.io/company/app:1.0.0
+          securityContext:
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"

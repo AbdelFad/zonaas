@@ -4,6 +4,7 @@ on:
   pull_request:
   push:
     branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   validate:
@@ -34,3 +35,36 @@ jobs:
         run: |
           kubectl kustomize gitops/apps/llm/base >/dev/null
           kubectl kustomize gitops/apps/overlays/onprem >/dev/null
+
+      - name: Install Kyverno CLI
+        run: |
+          KYVERNO_VERSION=v1.12.5
+          curl -sSL -o /tmp/kyverno.tar.gz "https://github.com/kyverno/kyverno/releases/download/${KYVERNO_VERSION}/kyverno-cli_${KYVERNO_VERSION}_linux_x86_64.tar.gz"
+          tar -xzf /tmp/kyverno.tar.gz -C /tmp
+          sudo mv /tmp/kyverno /usr/local/bin/kyverno
+          kyverno version
+
+      - name: Run Kyverno policy regression tests
+        run: kyverno test policies/kyverno/tests
+
+      - name: Install kube-linter
+        run: |
+          KUBE_LINTER_VERSION=0.7.3
+          curl -sSL -o /tmp/kube-linter.tar.gz "https://github.com/stackrox/kube-linter/releases/download/v${KUBE_LINTER_VERSION}/kube-linter-linux.tar.gz"
+          tar -xzf /tmp/kube-linter.tar.gz -C /tmp
+          sudo mv /tmp/kube-linter /usr/local/bin/kube-linter
+          kube-linter version
+
+      - name: Lint Kubernetes manifests
+        run: kube-linter lint gitops/apps/llm/base
+
+      - name: Install gitleaks
+        run: |
+          GITLEAKS_VERSION=8.24.2
+          curl -sSL -o /tmp/gitleaks.tar.gz "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz"
+          tar -xzf /tmp/gitleaks.tar.gz -C /tmp
+          sudo mv /tmp/gitleaks /usr/local/bin/gitleaks
+          gitleaks version
+
+      - name: Scan repository for leaked secrets
+        run: gitleaks detect --source . --redact --no-banner

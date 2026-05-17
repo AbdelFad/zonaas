@@ -14,7 +14,11 @@ spec:
                 - Pod
       validate:
         message: "Images must come from approved registries"
-        pattern:
-          spec:
-            containers:
-              - image: "registry.company.tld/* | ghcr.io/company/*"
+        foreach:
+          - list: "request.object.spec.containers"
+            deny:
+              conditions:
+                all:
+                  - key: "{{ regex_match('^(registry\\.company\\.tld/.+|ghcr\\.io/company/.+)$', element.image) }}"
+                    operator: Equals
+                    value: false
