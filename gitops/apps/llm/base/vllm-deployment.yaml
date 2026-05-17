@@ -18,9 +18,13 @@ spec:
         zonaas/workload-type: llm
         zonaas/data-classification: confidential
     spec:
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
       containers:
         - name: vllm
-          image: vllm/vllm-openai:latest
+          image: vllm/vllm-openai:v0.5.5
           args:
             - --model
             - /models/meta-llama-3-8b-instruct
