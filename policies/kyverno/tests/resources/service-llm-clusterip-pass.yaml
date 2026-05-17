@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: llm-internal-svc
+  labels:
+    zonaas/workload-type: llm
+spec:
+  type: ClusterIP
+  selector:
+    app: llm
+  ports:
+    - port: 8080
+      targetPort: 8080

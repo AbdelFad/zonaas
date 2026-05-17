@@ -1,0 +1,70 @@
+apiVersion: cli.kyverno.io/v1alpha1
+kind: Test
+metadata:
+  name: zonaas-kyverno-security-regression
+policies:
+  - ../disallow-latest-tag.yaml
+  - ../disallow-public-llm-endpoints.yaml
+  - ../require-llm-data-classification-label.yaml
+  - ../require-pod-security-context.yaml
+resources:
+  - resources/pod-latest-fail.yaml
+  - resources/pod-pinned-pass.yaml
+  - resources/service-llm-loadbalancer-fail.yaml
+  - resources/service-llm-clusterip-pass.yaml
+  - resources/deployment-llm-no-classification-fail.yaml
+  - resources/deployment-llm-with-classification-pass.yaml
+  - resources/pod-securitycontext-missing-fail.yaml
+  - resources/pod-securitycontext-hardened-pass.yaml
+results:
+  - policy: disallow-latest-tag
+    rule: validate-image-tag
+    resources:
+      - pod-latest-fail
+    kind: Pod
+    result: fail
+  - policy: disallow-latest-tag
+    rule: validate-image-tag
+    resources:
+      - pod-pinned-pass
+    kind: Pod
+    result: pass
+
+  - policy: disallow-public-llm-endpoints
+    rule: deny-public-loadbalancer-for-llm
+    resources:
+      - llm-public-svc
+    kind: Service
+    result: fail
+  - policy: disallow-public-llm-endpoints
+    rule: deny-public-loadbalancer-for-llm
+    resources:
+      - llm-internal-svc
+    kind: Service
+    result: pass
+
+  - policy: require-llm-data-classification-label
+    rule: require-classification-for-llm-workloads
+    resources:
+      - llm-no-classification
+    kind: Deployment
+    result: fail
+  - policy: require-llm-data-classification-label
+    rule: require-classification-for-llm-workloads
+    resources:
+      - llm-with-classification
+    kind: Deployment
+    result: pass
+
+  - policy: require-pod-security-context
+    rule: require-run-as-non-root
+    resources:
+      - pod-security-fail
+    kind: Pod
+    result: fail
+  - policy: require-pod-security-context
+    rule: require-run-as-non-root
+    resources:
+      - pod-security-pass
+    kind: Pod
+    result: pass
